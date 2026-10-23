@@ -1,0 +1,98 @@
+{
+  "Apps, grouping, icon size, colors and the other options of the stock switcher stay in Settings → Workspaces: this widget reads them too.": {
+    "Apps, grouping, icon size, colors and the other options of the stock switcher stay in Settings → Workspaces: this widget reads them too.": "Aplicativos, agrupamento, tamanho dos ícones, cores e as demais opções do seletor original continuam em Configurações → Áreas de Trabalho: este widget também as lê."
+  },
+  "Empty workspace button": {
+    "Empty workspace button": "Botão de área de trabalho vazia"
+  },
+  "Hover the widget, or the spot beside it, to bring out a + that goes to a new empty workspace.": {
+    "Hover the widget, or the spot beside it, to bring out a + that goes to a new empty workspace.": "Passe o mouse no widget, ou no ponto ao lado dele, para mostrar um + que leva a uma área de trabalho vazia."
+  },
+  "Where the + goes": {
+    "Where the + goes": "Para onde vai o +"
+  },
+  "The workspace after the highest one, or the first empty one to the right of the active workspace.": {
+    "The workspace after the highest one, or the first empty one to the right of the active workspace.": "A área de trabalho depois da maior, ou a primeira vazia à direita da ativa."
+  },
+  "After the last workspace": {
+    "After the last workspace": "Depois da última área de trabalho"
+  },
+  "Next to the active workspace": {
+    "Next to the active workspace": "Ao lado da área de trabalho ativa"
+  },
+  "Menu on right-click": {
+    "Menu on right-click": "Menu no botão direito"
+  },
+  "Right-click an app icon for its actions, float, fullscreen, pin, move and close.": {
+    "Right-click an app icon for its actions, float, fullscreen, pin, move and close.": "Botão direito num ícone abre as ações do app, flutuar, tela cheia, fixar, mover e fechar."
+  },
+  "Kill Process in the menu": {
+    "Kill Process in the menu": "Matar Processo no menu"
+  },
+  "Hide it if you would rather not have it one click away.": {
+    "Hide it if you would rather not have it one click away.": "Desligue se não quiser essa opção a um clique de distância."
+  },
+  "Close with middle-click": {
+    "Close with middle-click": "Fechar com o botão do meio"
+  },
+  "Middle-click an app icon to close that app.": {
+    "Middle-click an app icon to close that app.": "Botão do meio num ícone fecha aquele app."
+  },
+  "Middle-click on a grouped icon": {
+    "Middle-click on a grouped icon": "Botão do meio num ícone agrupado"
+  },
+  "When one icon stands for several windows of the same app.": {
+    "When one icon stands for several windows of the same app.": "Quando um ícone representa várias janelas do mesmo app."
+  },
+  "Close the focused window": {
+    "Close the focused window": "Fechar a janela em foco"
+  },
+  "Close all its windows": {
+    "Close all its windows": "Fechar todas as janelas dele"
+  },
+  "Drag icons to move apps": {
+    "Drag icons to move apps": "Arrastar ícones para mover apps"
+  },
+  "Drag an app icon onto another workspace, or onto the +, to move it there.": {
+    "Drag an app icon onto another workspace, or onto the +, to move it there.": "Arraste um ícone até outra área de trabalho, ou até o +, para mover o app para lá."
+  },
+  "Scroll to switch workspaces": {
+    "Scroll to switch workspaces": "Rolar para trocar de área de trabalho"
+  },
+  "Use the mouse wheel over the widget.": {
+    "Use the mouse wheel over the widget.": "Use a roda do mouse sobre o widget."
+  },
+  "Pill padding": {
+    "Pill padding": "Espaçamento dos botões"
+  },
+  "Space between a workspace's edge and its icons, as a share of the icon size.": {
+    "Space between a workspace's edge and its icons, as a share of the icon size.": "Espaço entre a borda do botão e os ícones, como parte do tamanho do ícone."
+  },
+  "Dim inactive apps": {
+    "Dim inactive apps": "Esmaecer apps inativos"
+  },
+  "App icons that are not focused are shown translucent; the focused one stays solid.": {
+    "App icons that are not focused are shown translucent; the focused one stays solid.": "Os ícones dos apps sem foco aparecem translúcidos; o que está em foco fica sólido."
+  },
+  "Focused app indicator": {
+    "Focused app indicator": "Indicador do app em foco"
+  },
+  "How the focused app is marked in its workspace.": {
+    "How the focused app is marked in its workspace.": "Como o app em foco é marcado dentro da área de trabalho."
+  },
+  "Dot below the icon": {
+    "Dot below the icon": "Ponto abaixo do ícone"
+  },
+  "Bar below the icon": {
+    "Bar below the icon": "Barra abaixo do ícone"
+  },
+  "Ring around the icon": {
+    "Ring around the icon": "Anel ao redor do ícone"
+  },
+  "Background behind the icon": {
+    "Background behind the icon": "Fundo atrás do ícone"
+  },
+  "Larger icon": {
+    "Larger icon": "Ícone maior"
+  }
+}
