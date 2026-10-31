@@ -5,7 +5,7 @@ import Quickshell.Hyprland
 import Quickshell.Widgets
 import qs.Common
 import qs.Services
-import qs.Widgets
+import qs.DCommon.Widgets
 
 // The bar pill: DMS's workspace switcher for Hyprland (same settings and colors),
 // plus the empty-workspace button on hover, the app context menu and middle-click close.
@@ -18,6 +18,11 @@ Item {
     readonly property string pluginId: "workspaceSwitcherPlus"
     // The plugin's own settings (Settings.qml); the stock workspace options stay in DMS's Workspaces page
     property var options: SettingsData.getPluginSettingsForPlugin(pluginId)
+
+    // The stock switcher's options live in each widget's own entry since DMS 2.0, with its defaults as the fallback
+    function stock(key) {
+        return SettingsData.widgetOption("workspaceSwitcher", host?.widgetData, key);
+    }
 
     function opt(key, fallback) {
         const value = options?.[key];
@@ -39,8 +44,8 @@ Item {
     readonly property var barConfig: host?.barConfig ?? null
     // The bar's "widget transparency" setting, as the other widgets' backgrounds use it
     readonly property real backgroundOpacity: barConfig?.widgetTransparency ?? 1.0
-    readonly property bool showApps: SettingsData.showWorkspaceApps
-    readonly property real appIconSize: Theme.barIconSize(host?.barThickness ?? 48, -6 + SettingsData.workspaceAppIconSizeOffset, barConfig?.maximizeWidgetIcons, barConfig?.iconScale)
+    readonly property bool showApps: root.stock("showWorkspaceApps")
+    readonly property real appIconSize: Theme.barIconSize(host?.barThickness ?? 48, -6 + root.stock("workspaceAppIconSizeOffset"), barConfig?.maximizeWidgetIcons, barConfig?.iconScale)
     readonly property real pillLong: Math.max(thickness * 0.7, appIconSize * 1.2)
     // Space between a pill's edge and its icons
     readonly property real pillPadding: Math.round(appIconSize * opt("padding", 35) / 100)
@@ -102,17 +107,17 @@ Item {
         }
     }
 
-    readonly property color unfocusedColor: modeColor(SettingsData.workspaceUnfocusedColorMode, Theme.surfaceTextAlpha, SettingsData.workspaceUnfocusedCustomColor)
+    readonly property color unfocusedColor: modeColor(root.stock("workspaceUnfocusedColorMode"), Theme.surfaceTextAlpha, root.stock("workspaceUnfocusedCustomColor"))
     readonly property color activeColor: {
-        const mode = SettingsData.workspaceColorMode;
-        return mode === "none" ? unfocusedColor : modeColor(mode, Theme.primary, SettingsData.workspaceFocusedCustomColor);
+        const mode = root.stock("workspaceColorMode");
+        return mode === "none" ? unfocusedColor : modeColor(mode, Theme.primary, root.stock("workspaceFocusedCustomColor"));
     }
     readonly property color occupiedColor: {
-        const mode = SettingsData.workspaceOccupiedColorMode;
-        return mode === "none" ? unfocusedColor : modeColor(mode, unfocusedColor, SettingsData.workspaceOccupiedCustomColor);
+        const mode = root.stock("workspaceOccupiedColorMode");
+        return mode === "none" ? unfocusedColor : modeColor(mode, unfocusedColor, root.stock("workspaceOccupiedCustomColor"));
     }
-    readonly property color urgentColor: modeColor(SettingsData.workspaceUrgentColorMode, Theme.error, SettingsData.workspaceUrgentCustomColor)
-    readonly property color borderColor: modeColor(SettingsData.workspaceFocusedBorderColor, Theme.primary, SettingsData.workspaceFocusedBorderCustomColor)
+    readonly property color urgentColor: modeColor(root.stock("workspaceUrgentColorMode"), Theme.error, root.stock("workspaceUrgentCustomColor"))
+    readonly property color borderColor: modeColor(root.stock("workspaceFocusedBorderColor"), Theme.primary, root.stock("workspaceFocusedBorderCustomColor"))
 
     // The accent when it stands out from the pill under it, else a plain dark or light
     function contrastOn(accent, base) {
@@ -136,7 +141,7 @@ Item {
 
         const monitors = Array.from(Hyprland.monitors?.values || []);
         const own = monitors.find(m => m.name === screenName);
-        const global = !screenName || SettingsData.workspaceFollowFocus;
+        const global = !screenName || root.stock("workspaceFollowFocus");
         const active = (global ? Hyprland.focusedWorkspace?.id : own?.activeWorkspace?.id) || 1;
 
         // Named workspaces have negative ids and are left to the stock switcher
@@ -148,9 +153,9 @@ Item {
         let order = list.map(ws => ws.id).sort((a, b) => a - b);
         if (!order.length)
             order = [active];
-        if (SettingsData.showOccupiedWorkspacesOnly)
+        if (root.stock("showOccupiedWorkspacesOnly"))
             order = order.filter(id => id === active || occupiedIds[id]);
-        if (SettingsData.showWorkspacePadding) {
+        if (root.stock("showWorkspacePadding")) {
             let next = Math.max(...order);
             while (order.length < 3)
                 order.push(++next);
@@ -179,7 +184,7 @@ Item {
                     return;
                 const address = hypr.address;
                 const modded = appKey(w);
-                const grouped = SettingsData.groupWorkspaceApps && (!entry.active || SettingsData.groupActiveWorkspaceApps);
+                const grouped = root.stock("groupWorkspaceApps") && (!entry.active || root.stock("groupActiveWorkspaceApps"));
                 const key = wsId + "|" + (grouped ? modded : address);
                 let app = perApp[key];
                 if (!app) {
@@ -244,7 +249,7 @@ Item {
     Component.onCompleted: rebuild()
 
     // Anything that changes the pills; the settings read by rebuild() are joined in one key
-    readonly property string settingsKey: [SettingsData.showWorkspaceApps, SettingsData.groupWorkspaceApps, SettingsData.groupActiveWorkspaceApps, SettingsData.workspaceFollowFocus, SettingsData.showOccupiedWorkspacesOnly, SettingsData.showWorkspacePadding].join()
+    readonly property string settingsKey: [root.stock("showWorkspaceApps"), root.stock("groupWorkspaceApps"), root.stock("groupActiveWorkspaceApps"), root.stock("workspaceFollowFocus"), root.stock("showOccupiedWorkspacesOnly"), root.stock("showWorkspacePadding")].join()
     onSettingsKeyChanged: schedule()
 
     Connections {
@@ -434,8 +439,8 @@ Item {
                     readonly property bool isActive: entry?.active ?? false
                     readonly property bool isOccupied: entry?.occupied ?? false
                     readonly property bool isUrgent: entry?.urgent ?? false
-                    readonly property var iconKeys: (entry?.icons ?? []).slice(0, SettingsData.maxWorkspaceIcons).map(i => i.key)
-                    readonly property bool hasLabel: SettingsData.showWorkspaceIndex
+                    readonly property var iconKeys: (entry?.icons ?? []).slice(0, root.stock("maxWorkspaceIcons")).map(i => i.key)
+                    readonly property bool hasLabel: root.stock("showWorkspaceIndex")
                     readonly property bool isDropTarget: root.dragging && root.dragTarget === modelData
 
                     // Same size active or not: the icons plus an even padding. An empty workspace is a plain pill.
@@ -470,7 +475,7 @@ Item {
                         height: root.vertical ? pill.height : pill.visualShort
                         radius: Theme.cornerRadius
                         color: Theme.blendAlpha(pill.requestedColor, root.backgroundOpacity)
-                        border.width: pill.isDropTarget ? 2 : (SettingsData.workspaceFocusedBorderEnabled && pill.isActive ? SettingsData.workspaceFocusedBorderThickness : 0)
+                        border.width: pill.isDropTarget ? 2 : (root.stock("workspaceFocusedBorderEnabled") && pill.isActive ? root.stock("workspaceFocusedBorderThickness") : 0)
                         border.color: pill.isDropTarget ? Theme.primary : root.borderColor
 
                         Behavior on color {
@@ -572,7 +577,7 @@ Item {
                                 }
 
                                 // No icon file: a steam controller, or the app's first letter
-                                DankIcon {
+                                DIcon {
                                     anchors.centerIn: parent
                                     size: root.appIconSize
                                     name: "sports_esports"
@@ -745,7 +750,7 @@ Item {
             border.width: root.dragging && root.dragTarget === root.emptyTarget ? 2 : 0
             border.color: Theme.primary
 
-            DankIcon {
+            DIcon {
                 anchors.centerIn: parent
                 name: "add"
                 size: Math.min(root.appIconSize, Math.min(parent.width, parent.height) - 4)
@@ -782,7 +787,7 @@ Item {
         onWheel: event => {
             if (Math.abs(event.angleDelta.x) > Math.abs(event.angleDelta.y) || cooling)
                 return;
-            accumulated += event.angleDelta.y * (SettingsData.reverseScrolling ? -1 : 1);
+            accumulated += event.angleDelta.y * (root.stock("reverseScrolling") ? -1 : 1);
             if (Math.abs(accumulated) < 120)
                 return;
             HyprlandService.focusWorkspace(accumulated > 0 ? "e-1" : "e+1");

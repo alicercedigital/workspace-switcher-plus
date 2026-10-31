@@ -8,7 +8,7 @@ The [DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell) worksp
 
 **Drag an app icon** onto another workspace's pill, or onto the `+`, to move the app there: every window the icon stands for goes along. Left-click an icon focuses its window (and cycles through a group), left-click elsewhere on a pill goes to the workspace, the wheel steps through workspaces.
 
-It reads the stock switcher's settings, so Settings → Workspaces still applies: show apps, group apps, icon size and count, index, colors, padding, occupied only, follow focus, and the focused border. Not covered: named workspaces, drag to reorder, and the separate look for unfocused monitors. Hyprland only.
+It reads the stock switcher's options from its own entry in the bar (since DMS 2.0 they are per widget; unset ones use the stock defaults): show apps, group apps, icon size and count, index, colors, padding, occupied only, follow focus, and the focused border. Not covered: named workspaces, drag to reorder, and the separate look for unfocused monitors. Hyprland only.
 
 ## Settings
 

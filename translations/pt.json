@@ -1,6 +1,6 @@
 {
-  "Apps, grouping, icon size, colors and the other options of the stock switcher stay in Settings → Workspaces: this widget reads them too.": {
-    "Apps, grouping, icon size, colors and the other options of the stock switcher stay in Settings → Workspaces: this widget reads them too.": "Aplicativos, agrupamento, tamanho dos ícones, cores e as demais opções do seletor original continuam em Configurações → Áreas de Trabalho: este widget também as lê."
+  "Apps, grouping, icon size, colors and the other options of the stock switcher are read from this widget's entry in the bar, with the stock defaults as fallback.": {
+    "Apps, grouping, icon size, colors and the other options of the stock switcher are read from this widget's entry in the bar, with the stock defaults as fallback.": "Aplicativos, agrupamento, tamanho dos ícones, cores e as demais opções do seletor original são lidos da entrada deste widget na barra, com os padrões do seletor original como reserva."
   },
   "Empty workspace button": {
     "Empty workspace button": "Botão de área de trabalho vazia"

@@ -1,6 +1,6 @@
 import QtQuick
 import qs.Common
-import qs.Widgets
+import qs.DCommon.Widgets
 import qs.Modules.Plugins
 
 PluginSettings {
@@ -22,7 +22,7 @@ PluginSettings {
 
     StyledText {
         width: parent.width
-        text: root.tr("Apps, grouping, icon size, colors and the other options of the stock switcher stay in Settings → Workspaces: this widget reads them too.")
+        text: root.tr("Apps, grouping, icon size, colors and the other options of the stock switcher are read from this widget's entry in the bar, with the stock defaults as fallback.")
         font.pixelSize: Theme.fontSizeSmall
         color: Theme.surfaceVariantText
         wrapMode: Text.WordWrap

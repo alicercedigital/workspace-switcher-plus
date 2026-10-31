@@ -5,7 +5,7 @@ import Quickshell.Wayland
 import Quickshell.Widgets
 import qs.Common
 import qs.Services
-import qs.Widgets
+import qs.DCommon.Widgets
 
 // Right-click menu of an app icon. Covers the screen so a click outside closes it.
 PanelWindow {
@@ -318,7 +318,7 @@ PanelWindow {
                             anchors.leftMargin: Theme.spacingS
                             spacing: Theme.spacingS
 
-                            DankIcon {
+                            DIcon {
                                 anchors.verticalCenter: parent.verticalCenter
                                 name: row.modelData.icon ?? ""
                                 size: 16
@@ -420,7 +420,7 @@ PanelWindow {
                         radius: Theme.cornerRadius
                         color: newArea.containsMouse ? BlurService.hoverColor(Theme.widgetBaseHoverColor) : Theme.withAlpha(Theme.surfaceVariant, 0.5)
 
-                        DankIcon {
+                        DIcon {
                             anchors.centerIn: parent
                             name: "add"
                             size: 16
